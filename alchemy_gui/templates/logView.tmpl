@@ -1,0 +1,17 @@
+<h4 id="temp">Script logs</h4>
+
+<textarea id="log" title="log" rows="10" cols="80" readonly>
+    {{-pyview.subject.log}}
+</textarea>
+<script>
+var log = document.getElementById('log');
+if (log != document.activeElement) {
+    log.scrollTop = log.scrollHeight;
+}
+</script>
+<br>
+
+<label for="err">Error logs</label><br>
+<textarea id="err" title="err" rows="3" cols="80" readonly>
+    {{-pyview.subject.err}}
+</textarea>

@@ -1,0 +1,11 @@
+<h4 id="temp">Script to be run: {{pyview.subject.target_file}} </h4>
+
+<label for="script">Source file:</label>
+<select id="script" name="script">
+    {{pyview.subject.get_str()}}
+</select>
+<button type="submit" onclick='pyview.run("script");' id="update">Update</button>
+<br>
+
+<button type="button" onclick='pyview.parent.subject.run_code();' id="run_code">Run script</button>
+<button type="button" onclick='pyview.parent.subject.stop_code();' id="run_code">Run script</button>

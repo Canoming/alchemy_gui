@@ -1,0 +1,1 @@
+This line is printed from a local file. You should be able to see it in the logs.

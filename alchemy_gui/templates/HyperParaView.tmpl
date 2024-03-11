@@ -1,0 +1,36 @@
+<h4>Hyper-parameters</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Current Value</th>
+            <th>New Value</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    {{ pyview.dictView.render() }}
+</table>
+
+<form>
+    <input type="text" id="hyper_para" placeholder="Variable name" required>
+    <br>
+    <label for="hyper_para_type">Variable Type:
+        <select name="hyper_para_type" title="type" id="hyper_para_type">
+            <option value="int">int</option>
+            <option value="float">float</option>
+            <option value="string">string</option>
+        </select>
+    </label>
+    <br>
+    <button onclick='pyview.add_hyper_para();'
+        type="submit">
+        Add hyper-parameter
+    </button>
+</form>
+<div style="position: relative; left: 95%;">
+<button onclick='pyview.save_paras();'
+    type="submit">
+    Save
+</button>
+</div>
