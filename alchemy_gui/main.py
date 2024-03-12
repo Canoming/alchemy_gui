@@ -7,16 +7,16 @@ from time import sleep
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
-def main(work_dir = None):
+def main(work_dir = "demo/"):
 
     args = sys.argv[1:]
 
-    if len(args) > 0:
-        work_dir = os.path.join(args[0],"") if len(args) > 0 else None
-        print(f'work_dir: {work_dir}')
+    work_dir = os.path.join(args[0],"") if len(args) > 0 else os.path.join(".","")
 
-    if work_dir is None:
+    if work_dir == "demo/":
         work_dir = os.path.join(SCRIPT_DIR, "assets/src/")
+
+    print(f'work_dir: {work_dir}')
     app = PlayGround(work_dir = work_dir)
     gui = PyHtmlGui(
         app_instance  = app,

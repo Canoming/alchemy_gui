@@ -1,6 +1,5 @@
-alpha: float
-beta: float
-method: str
+from types import SimpleNamespace
+hyper_paras : SimpleNamespace
 
 from time import sleep
 
@@ -9,11 +8,11 @@ print("Hello, here is an independent script.")
 with open('example.txt', 'r') as f:
     print(f.read())
 
-print(f'{alpha = }')
-print(f'{beta = }')
-print(f'{method = }')
+print(f'{hyper_paras.alpha = }')
+print(f'{hyper_paras.beta = }')
+print(f'{hyper_paras.method = }')
 
-for i in range(8):
+for i in range(5):
     print('count:',i)
     sleep(.5)
 

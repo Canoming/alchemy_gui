@@ -1,4 +1,3 @@
-from importlib.metadata import entry_points
 from setuptools import setup
 
 with open('README.md', 'r') as f:
@@ -6,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
    name='alchemy_gui',
-   version='0.1',
+   version='0.2',
    description='A gui for tuining hyperparameters of python scripts',
    license="MIT",
    long_description=long_description,

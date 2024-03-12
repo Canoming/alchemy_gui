@@ -105,6 +105,7 @@ class HyperParaDict(Observable):
         self.read_paras()
 
     def remove_hyper_para(self, name : str):
+        print(f'remove parameter: {name}...')
         del self.HyperParas[name]
 
     def add_hyper_para(self, name = None, value = 0, type : str = "int"):
@@ -122,7 +123,7 @@ class HyperParaDict(Observable):
 
     def save_paras(self):
         paras = self.get_paras()
-        print('saving parameters')
+        print('save parameters...')
 
         if not os.path.exists(self.file_name):
             os.mknod(self.file_name)
@@ -196,16 +197,17 @@ class Logs(Observable):
         return self.ps.is_alive()
 
     def _loop_err(self):
-        self.err = "No error"
+        self.err = ""
         self.notify_observers()
 
         while True:
             try:
-                output: Exception = self.stderr.get(timeout=1)
+                output : str = self.stderr.get(timeout=1)
             except:
                 output = None
             if output:
-                self.err = '\n'.join(traceback.format_exception(output))
+                print(output)
+                self.err += output
                 self.notify_observers()
             if not self.ps.is_alive():
                 break

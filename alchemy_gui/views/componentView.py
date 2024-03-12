@@ -43,14 +43,6 @@ class HyperParaDictView(PyHtmlView):
 
         result = self.eval_javascript(js)
         result._callback = get_result
-    
-    def remove_hyper_para(self, key):
-        print(f'para {key} is removed')
-        self.subject.remove_hyper_para(key)
-
-    def save_paras(self):
-        self.subject.save_paras()
-        self.call_javascript('alert', args=["Paras saved"])
 
 class HyperItemView(PyHtmlView):
     DOM_ELEMENT = "tr"
@@ -62,7 +54,7 @@ class HyperItemView(PyHtmlView):
     <td>
         <button onclick='pyview.set_value();'>Set</button> 
         <button onclick='pyview.subject.reset();'>Reset</button> 
-        <button onclick='pyview.parent.parent.remove_hyper_para("{{pyview.element_key()}}");'>Remove</button> 
+        <button onclick='pyview.parent.parent.subject.remove_hyper_para("{{pyview.element_key()}}");'>Remove</button> 
     </td>
     '''
 
