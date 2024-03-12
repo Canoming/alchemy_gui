@@ -10,28 +10,40 @@ class InfoBox(Observable):
         super().__init__()
         self.target_file = 'None'
 
-        self._scripts = ""
         self.scripts_path = scripts_path
-        self.files = self._fetch_scripts()
 
-        for file in self.files:
-            self._scripts += f"""
-            <option value="{file}">{file}</option>
-            """
+        self.set()
     
     def _fetch_scripts(self):
         f = []
         for (dirpath, dirnames, filenames) in os.walk(self.scripts_path):
             f.extend(filenames)
             break
-        return filter(lambda x: x.endswith('.py'), f)
+        return list(filter(lambda x: x.endswith('.py'), f))
 
     def get_str(self):
        return  Markup(self._scripts)
 
-    def set(self, value):
-        print(f'set to {value}')
+    def set(self, value:str =None):
+        self.files = self._fetch_scripts()
+
+        if value is None:
+            value = self.files[0]
+
         self.target_file = value
+        print(f'set to {value}')
+        self.notify_observers()
+
+        self._scripts = ""
+        for file in self.files:
+            if file == self.target_file:
+                self._scripts += f"""
+                <option value="{file}" selected>{file}</option>
+                """
+            else:
+                self._scripts += f"""
+                <option value="{file}">{file}</option>
+            """
         self.notify_observers()
 
     def reset(self):
@@ -175,8 +187,9 @@ class Logs(Observable):
                 self.notify_observers()
             if self.stdout.qsize() == 0 and self.stderr.qsize() == 0 and self.status.is_set():
                 self.ps.terminate()
-                self.ps.joint()
+                self.ps.join()
                 self.log += "\n" + f"{'script terminated':-^50}"
+                print(f"Process finished")
                 self.notify_observers()
                 break
 

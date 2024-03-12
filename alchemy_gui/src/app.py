@@ -71,7 +71,6 @@ class PlayGround(Observable):
             print("An error occurs, see the error log")
             q_err.put(e)
         self.script_status.set()
-        print(f"Process '{self.infoBox.target_file}' finished")
 
 
     def on_view_connected(self, nr_of_instances, nr_of_connections):
